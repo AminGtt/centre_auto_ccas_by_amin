@@ -17,3 +17,6 @@
 |                 | /contact                               |         |            |
 |                 | /mentionsLegales                       |         |            |
 |                 | /CGU                                   |         |            |
+|                 |                                        |         |            |
+|                 | /adminPanel                            |         |            |
+|                 | api/ prefix??                          |         |            |
