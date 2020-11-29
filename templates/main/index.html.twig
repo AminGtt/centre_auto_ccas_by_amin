@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<header class="d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-column align-items-center mb-2">
+      <img id="logo_header" src="img/logoblanc.jpg" alt="Logo Ccas" />
+      <h1>Centre' Auto' Ccas</h1>
+    </div>
+    <nav>
+      <ul class="d-flex align-items-center">
+        <li class="mr-5"><a href="#">Accueil</a></li>
+        <li class="mr-5"><a href="#">Annonces</a></li>
+        <li class="mr-5"><a href="#">Qui sommes nous?</a></li>
+        <li class="mr-5"><a href="#">Contact</a></li>
+        <li class="black_btn"><a href="#">Accès professionel</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="row ml-0 mr-0">
+    <aside class="col-3">
+      <h2 class="text-center mt-3 mb-3">Recherche rapide</h2>
+      <form action="#" method="POST">
+        <select class="custom-select">
+          <option value="base">Selectionnez une marque</option>
+          <option value="bmw">BMW</option>
+          <option value="audi">Audi</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="aston_martin">Aston Martin</option>
+          <option value="nissan">Nissan</option>
+        </select>
+        <!-- RANGE1 -->
+        <!-- FIN RANGE1 -->
+        <select class="custom-select">
+          <option value="base">Selectionnez une motorisation</option>
+          <option value="essence">Essence</option>
+          <option value="diesel">Diesel</option>
+          <option value="gpl">GPL</option>
+          <option value="hybride">Hybride</option>
+          <option value="electrique">Éléctrique</option>
+        </select>
+        <!-- RANGE2 -->
+        <!-- FIN RANGE2 -->
+        <!-- RANGE3 -->
+        <!-- FIN RANGE3 -->
+      </form>
+    </aside>
+    <article class="row col-9 pr-0 pl-0 mr-0 ml-0">
+      <img id="main_bcg" src="{{ asset('img/main_bcg.png') }}" alt="main_bcg" />
+      <section>
+        <h3>Une expertise de qualité</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
+          voluptatibus fugiat eos, id tenetur voluptatum accusamus, voluptates
+          aliquid totam consequatur expedita obcaecati.
+        </p>
+      </section>
+      <section class="reversed">
+        <h3>Le soucis du détail</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
+          voluptatibus fugiat eos, id tenetur voluptatum accusamus, voluptates
+          aliquid totam consequatur expedita obcaecati.
+        </p>
+      </section>
+      <section>
+        <h3>Professionel ? Rejoignez-nous !</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
+          voluptatibus fugiat eos, id tenetur voluptatum accusamus, voluptates
+          aliquid totam consequatur expedita obcaecati.
+        </p>
+      </section>
+      <section class="offres">
+        <h3 class="text-center">Nos dernières offres</h3>
+        <div class="row">
+          <div class="col-4 d-flex flex-column">
+            <a class="text-center" href="#">
+              <img
+                class="img_offres"
+                src="img/nismo2020.png"
+                alt="logo_GTR"
+              />
+              <p>Nissan GT-R nismo</p>
+              <p>3.9L V8 T 610ch</p>
+              <p>2020 - 50km</p>
+              <p>204 995€</p>
+            </a>
+          </div>
+          <div class="col-4 d-flex flex-column">
+            <a class="text-center" href="#">
+              <img class="img_offres" src="img/audi-rs6.png" alt="logo_RS6" />
+              <p>Audi RS6 (4e gen)</p>
+              <p>4.0 TFSI 600ch Quattro</p>
+              <p>2019 - 1500km</p>
+              <p>169 995€</p>
+            </a>
+          </div>
+          <div class="col-4 d-flex flex-column">
+            <a class="text-center" href="#">
+              <img
+                class="img_offres"
+                src="img/gtc4.jpg"
+                alt="logo_GTC4_lusso"
+              />
+              <p>Ferrari GTC4 Lusso</p>
+              <p>3.9L V8 T 610ch</p>
+              <p>2017 - 12 800km</p>
+              <p>209 995€</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+{% endblock %}
