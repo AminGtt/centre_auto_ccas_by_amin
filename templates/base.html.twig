@@ -5,6 +5,7 @@
         <title>{% block title %}Bienvenue au Centre Auto Ccas!{% endblock %}</title>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"/>
         <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('css/nouislider.css') }}" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/base.css') }}" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/styles.css') }}" type="text/css" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
@@ -12,5 +13,7 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script src="{{ asset('js/nouislider.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

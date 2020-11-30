@@ -27,6 +27,12 @@ class Photo
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="photos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annonce;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Photo
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,40 @@ class Annonce
      * @ORM\Column(type="text")
      */
     private $descriptionTechnique;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Energie::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $energie;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="annonce", orphanRemoval=true)
+     */
+    private $photos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $modele;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ContactMail::class, mappedBy="annonce", orphanRemoval=true)
+     */
+    private $contactMails;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Garage::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $garage;
+
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+        $this->contactMails = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +190,102 @@ class Annonce
     public function setDescriptionTechnique(string $descriptionTechnique): self
     {
         $this->descriptionTechnique = $descriptionTechnique;
+
+        return $this;
+    }
+
+    public function getEnergie(): ?Energie
+    {
+        return $this->energie;
+    }
+
+    public function setEnergie(?Energie $energie): self
+    {
+        $this->energie = $energie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Photo[]
+     */
+    public function getPhotos(): Collection
+    {
+        return $this->photos;
+    }
+
+    public function addPhoto(Photo $photo): self
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): self
+    {
+        if ($this->photos->removeElement($photo)) {
+            // set the owning side to null (unless already changed)
+            if ($photo->getAnnonce() === $this) {
+                $photo->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getModele(): ?Modele
+    {
+        return $this->modele;
+    }
+
+    public function setModele(?Modele $modele): self
+    {
+        $this->modele = $modele;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ContactMail[]
+     */
+    public function getContactMails(): Collection
+    {
+        return $this->contactMails;
+    }
+
+    public function addContactMail(ContactMail $contactMail): self
+    {
+        if (!$this->contactMails->contains($contactMail)) {
+            $this->contactMails[] = $contactMail;
+            $contactMail->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactMail(ContactMail $contactMail): self
+    {
+        if ($this->contactMails->removeElement($contactMail)) {
+            // set the owning side to null (unless already changed)
+            if ($contactMail->getAnnonce() === $this) {
+                $contactMail->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getGarage(): ?Garage
+    {
+        return $this->garage;
+    }
+
+    public function setGarage(?Garage $garage): self
+    {
+        $this->garage = $garage;
 
         return $this;
     }

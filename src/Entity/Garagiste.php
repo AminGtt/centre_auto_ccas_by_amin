@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GaragisteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Garagiste
      * @ORM\Column(type="string", length=255)
      */
     private $motDePasse;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Garage::class, mappedBy="garagiste", orphanRemoval=true)
+     */
+    private $garages;
+
+    public function __construct()
+    {
+        $this->garages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,36 @@ class Garagiste
     public function setMotDePasse(string $motDePasse): self
     {
         $this->motDePasse = $motDePasse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Garage[]
+     */
+    public function getGarages(): Collection
+    {
+        return $this->garages;
+    }
+
+    public function addGarage(Garage $garage): self
+    {
+        if (!$this->garages->contains($garage)) {
+            $this->garages[] = $garage;
+            $garage->setGaragiste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGarage(Garage $garage): self
+    {
+        if ($this->garages->removeElement($garage)) {
+            // set the owning side to null (unless already changed)
+            if ($garage->getGaragiste() === $this) {
+                $garage->setGaragiste(null);
+            }
+        }
 
         return $this;
     }

@@ -37,6 +37,12 @@ class ContactMail
      */
     private $commentaire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="contactMails")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annonce;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class ContactMail
     public function setCommentaire(string $commentaire): self
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }

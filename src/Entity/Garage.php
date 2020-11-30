@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GarageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,22 @@ class Garage
      * @ORM\Column(type="string", length=255)
      */
     private $departement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Garagiste::class, inversedBy="garages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $garagiste;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="garage", orphanRemoval=true)
+     */
+    private $annonces;
+
+    public function __construct()
+    {
+        $this->annonces = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +155,48 @@ class Garage
     public function setDepartement(string $departement): self
     {
         $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getGaragiste(): ?Garagiste
+    {
+        return $this->garagiste;
+    }
+
+    public function setGaragiste(?Garagiste $garagiste): self
+    {
+        $this->garagiste = $garagiste;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setGarage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getGarage() === $this) {
+                $annonce->setGarage(null);
+            }
+        }
 
         return $this;
     }

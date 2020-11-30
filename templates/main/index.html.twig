@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<header class="d-flex justify-content-between align-items-center">
+<header class="d-flex justify-content-between align-items-center fixed-top">
     <div class="d-flex flex-column align-items-center mb-2">
       <img id="logo_header" src="img/logoblanc.jpg" alt="Logo Ccas" />
       <h1>Centre' Auto' Ccas</h1>
@@ -16,9 +16,12 @@
       </ul>
     </nav>
   </header>
+
   <main class="row ml-0 mr-0">
-    <aside class="col-3">
+    
+    <aside class="col-3 fixed">
       <h2 class="text-center mt-3 mb-3">Recherche rapide</h2>
+
       <form action="#" method="POST">
         <select class="custom-select">
           <option value="base">Selectionnez une marque</option>
@@ -43,8 +46,10 @@
         <!-- RANGE3 -->
         <!-- FIN RANGE3 -->
       </form>
+
     </aside>
-    <article class="row col-9 pr-0 pl-0 mr-0 ml-0">
+    
+    <article class="row col-9 pr-0 pl-0 mr-0 ml-0 pos-right">
       <img id="main_bcg" src="{{ asset('img/main_bcg.png') }}" alt="main_bcg" />
       <section>
         <h3>Une expertise de qualité</h3>
